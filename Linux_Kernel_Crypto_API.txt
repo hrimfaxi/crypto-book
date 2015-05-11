@@ -1,0 +1,24 @@
+Linux Kernel Crypto API
+=======================
+
+include::01_Kernel_Crypto_API_Interface_Specification.txt[]
+
+<<<
+
+include::02_Kernel_Crypto_API_Architecture.txt[]
+
+<<<
+
+include::03_Developing_Cipher_Algorithms.txt[]
+
+<<<
+
+include::04_User_Space_Interface.txt[]
+
+<<<
+
+include::05_Programming_Interface.txt[]
+
+<<<
+
+include::06_Code_Examples.txt[]
