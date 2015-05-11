@@ -935,6 +935,7 @@ block size of cipher
 *Name*
 
 crypto_aead_setkey — set key for cipher
+
 .Synopsis
 [source,c]
 ------------
@@ -1027,6 +1028,7 @@ The encryption operation creates the authentication data / tag. That data is con
 *Name*
 
 crypto_aead_decrypt — decrypt ciphertext
+
 .Synopsis
 [source,c]
 ------------
@@ -1564,6 +1566,7 @@ The blkcipher_desc data structure must be filled by the caller and can reside on
 *Name*
 
 crypto_blkcipher_decrypt — decrypt ciphertext
+
 .Synopsis
 [source,c]
 ------------
