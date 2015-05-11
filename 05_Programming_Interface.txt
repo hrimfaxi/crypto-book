@@ -508,7 +508,9 @@ keylen::
 *Description*
 
 The caller provided key is set for the ablkcipher referenced by the cipher handle.
-Note, the key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
+
+[NOTE]
+The key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
 
 *Return*
 
@@ -619,7 +621,7 @@ unsigned int crypto_ablkcipher_reqsize (struct crypto_ablkcipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Return*
 
@@ -642,9 +644,9 @@ void ablkcipher_request_set_tfm (struct ablkcipher_request * req,
 *Arguments*
 
 req::
-    request handle to be modified 
+  request handle to be modified 
 tfm::
-    cipher handle that shall be added to the request handle 
+  cipher handle that shall be added to the request handle 
 
 *Description*
 
@@ -667,9 +669,9 @@ struct ablkcipher_request * ablkcipher_request_alloc (struct crypto_ablkcipher *
 *Arguments*
 
 tfm::
-    cipher handle to be registered with the request 
+  cipher handle to be registered with the request 
 gfp::
-    memory allocation flag that is handed to kmalloc by the API call. 
+  memory allocation flag that is handed to kmalloc by the API call. 
 
 *Description*
 
@@ -695,7 +697,7 @@ void ablkcipher_request_free (struct ablkcipher_request * req);
 *Arguments*
 
 req::
-    request data structure cipher handle to be freed 
+  request data structure cipher handle to be freed 
 
 <<<
 
@@ -716,13 +718,13 @@ void ablkcipher_request_set_callback (struct ablkcipher_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 flags::
-    specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
+  specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
 compl::
-    callback function pointer to be registered with the request handle 
+  callback function pointer to be registered with the request handle 
 data::
-    The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
+  The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
 
 *Description*
 
@@ -755,15 +757,15 @@ void ablkcipher_request_set_crypt (struct ablkcipher_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 src::
-    source scatter / gather list 
+  source scatter / gather list 
 dst::
-    destination scatter / gather list 
+  destination scatter / gather list 
 nbytes::
-    number of bytes to process from src 
+  number of bytes to process from src 
 iv::
-    IV for the cipher operation which must comply with the IV size defined by crypto_ablkcipher_ivsize 
+  IV for the cipher operation which must comply with the IV size defined by crypto_ablkcipher_ivsize 
 
 *Description*
 
@@ -815,11 +817,11 @@ struct crypto_aead * crypto_alloc_aead (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the AEAD cipher 
+  is the cra_name / name or cra_driver_name / driver name of the AEAD cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -845,7 +847,7 @@ void crypto_free_aead (struct crypto_aead * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -863,7 +865,7 @@ unsigned int crypto_aead_ivsize (struct crypto_aead * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -889,7 +891,7 @@ unsigned int crypto_aead_authsize (struct crypto_aead * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -917,7 +919,7 @@ unsigned int crypto_aead_blocksize (struct crypto_aead * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -944,17 +946,18 @@ int crypto_aead_setkey (struct crypto_aead * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 key::
-    buffer holding the key 
+  buffer holding the key 
 keylen::
-    length of the key in bytes 
+  length of the key in bytes 
 
 *Description*
 
 The caller provided key is set for the AEAD referenced by the cipher handle.
 
-Note, the key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
+[NOTE]
+The key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
 
 *Return*
 
@@ -977,9 +980,9 @@ int crypto_aead_setauthsize (struct crypto_aead * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 authsize::
-    size of the authentication data / tag in bytes 
+  size of the authentication data / tag in bytes 
 
 *Description*
 
@@ -1005,7 +1008,7 @@ int crypto_aead_encrypt (struct aead_request * req);
 *Arguments*
 
 req::
-    reference to the aead_request handle that holds all information needed to perform the cipher operation 
+  reference to the aead_request handle that holds all information needed to perform the cipher operation 
 
 *Description*
 
@@ -1033,7 +1036,7 @@ int crypto_aead_decrypt (struct aead_request * req);
 *Arguments*
 
 req::
-    reference to the ablkcipher_request handle that holds all information needed to perform the cipher operation 
+  reference to the ablkcipher_request handle that holds all information needed to perform the cipher operation 
 
 *Description*
 
@@ -1076,7 +1079,7 @@ unsigned int crypto_aead_reqsize (struct crypto_aead * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Return*
 
@@ -1099,9 +1102,9 @@ void aead_request_set_tfm (struct aead_request * req,
 *Arguments*
 
 req::
-    request handle to be modified 
+  request handle to be modified 
 tfm::
-    cipher handle that shall be added to the request handle 
+  cipher handle that shall be added to the request handle 
 
 *Description*
 
@@ -1124,9 +1127,9 @@ struct aead_request * aead_request_alloc (struct crypto_aead * tfm,
 *Arguments*
 
 tfm::
-    cipher handle to be registered with the request 
+  cipher handle to be registered with the request 
 gfp::
-    memory allocation flag that is handed to kmalloc by the API call. 
+  memory allocation flag that is handed to kmalloc by the API call. 
 
 *Description*
 
@@ -1152,7 +1155,7 @@ void aead_request_free (struct aead_request * req);
 *Arguments*
 
 req::
-    request data structure cipher handle to be freed 
+  request data structure cipher handle to be freed 
 
 <<<
 
@@ -1173,13 +1176,13 @@ void aead_request_set_callback (struct aead_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 flags::
-    specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
+  specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
 compl::
-    callback function pointer to be registered with the request handle 
+  callback function pointer to be registered with the request handle 
 data::
-    The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
+  The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
 
 *Description*
 
@@ -1212,15 +1215,15 @@ void aead_request_set_crypt (struct aead_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 src::
-    source scatter / gather list 
+  source scatter / gather list 
 dst::
-    destination scatter / gather list 
+  destination scatter / gather list 
 cryptlen::
-    number of bytes to process from src 
+  number of bytes to process from src 
 iv::
-    IV for the cipher operation which must comply with the IV size defined by crypto_aead_ivsize 
+  IV for the cipher operation which must comply with the IV size defined by crypto_aead_ivsize 
 
 *Description*
 
@@ -1256,11 +1259,11 @@ void aead_request_set_assoc (struct aead_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 assoc::
-    associated data scatter / gather list 
+  associated data scatter / gather list 
 assoclen::
-    number of bytes to process from assoc 
+  number of bytes to process from assoc 
 
 *Description*
 
@@ -1312,11 +1315,11 @@ struct crypto_blkcipher * crypto_alloc_blkcipher (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the blkcipher cipher 
+  is the cra_name / name or cra_driver_name / driver name of the blkcipher cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -1342,7 +1345,7 @@ void crypto_free_blkcipher (struct crypto_blkcipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -1362,11 +1365,11 @@ int crypto_has_blkcipher (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the block cipher 
+  is the cra_name / name or cra_driver_name / driver name of the block cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Return*
 
@@ -1388,7 +1391,7 @@ const char * crypto_blkcipher_name (struct crypto_blkcipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Return*
 
@@ -1410,7 +1413,7 @@ unsigned int crypto_blkcipher_ivsize (struct crypto_blkcipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -1436,7 +1439,7 @@ unsigned int crypto_blkcipher_blocksize (struct crypto_blkcipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -1464,17 +1467,18 @@ int crypto_blkcipher_setkey (struct crypto_blkcipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 key::
-    buffer holding the key 
+  buffer holding the key 
 keylen::
-    length of the key in bytes 
+  length of the key in bytes 
 
 *Description*
 
 The caller provided key is set for the block cipher referenced by the cipher handle.
 
-Note, the key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
+[NOTE]
+The key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
 
 *Return*
 
@@ -1499,13 +1503,13 @@ int crypto_blkcipher_encrypt (struct blkcipher_desc * desc,
 *Arguments*
 
 desc::
-    reference to the block cipher handle with meta data 
+  reference to the block cipher handle with meta data 
 dst::
-    scatter/gather list that is filled by the cipher operation with the ciphertext 
+  scatter/gather list that is filled by the cipher operation with the ciphertext 
 src::
-    scatter/gather list that holds the plaintext 
+  scatter/gather list that holds the plaintext 
 nbytes::
-    number of bytes of the plaintext to encrypt. 
+  number of bytes of the plaintext to encrypt. 
 
 *Description*
 
@@ -1536,13 +1540,13 @@ int crypto_blkcipher_encrypt_iv (struct blkcipher_desc * desc,
 *Arguments*
 
 desc::
-    reference to the block cipher handle with meta data 
+  reference to the block cipher handle with meta data 
 dst::
-    scatter/gather list that is filled by the cipher operation with the ciphertext 
+  scatter/gather list that is filled by the cipher operation with the ciphertext 
 src::
-    scatter/gather list that holds the plaintext 
+  scatter/gather list that holds the plaintext 
 nbytes::
-    number of bytes of the plaintext to encrypt. 
+  number of bytes of the plaintext to encrypt. 
 
 *Description*
 
@@ -1572,13 +1576,13 @@ int crypto_blkcipher_decrypt (struct blkcipher_desc * desc,
 *Arguments*
 
 desc::
-    reference to the block cipher handle with meta data 
+  reference to the block cipher handle with meta data 
 dst::
-    scatter/gather list that is filled by the cipher operation with the plaintext 
+  scatter/gather list that is filled by the cipher operation with the plaintext 
 src::
-    scatter/gather list that holds the ciphertext 
+  scatter/gather list that holds the ciphertext 
 nbytes::
-    number of bytes of the ciphertext to decrypt. 
+  number of bytes of the ciphertext to decrypt. 
 
 *Description*
 
@@ -1609,13 +1613,13 @@ int crypto_blkcipher_decrypt_iv (struct blkcipher_desc * desc,
 *Arguments*
 
 desc::
-    reference to the block cipher handle with meta data 
+  reference to the block cipher handle with meta data 
 dst::
-    scatter/gather list that is filled by the cipher operation with the plaintext 
+  scatter/gather list that is filled by the cipher operation with the plaintext 
 src::
-    scatter/gather list that holds the ciphertext 
+  scatter/gather list that holds the ciphertext 
 nbytes::
-    number of bytes of the ciphertext to decrypt. 
+  number of bytes of the ciphertext to decrypt. 
 
 *Description*
 
@@ -1645,11 +1649,11 @@ void crypto_blkcipher_set_iv (struct crypto_blkcipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 src::
-    buffer holding the IV 
+  buffer holding the IV 
 len::
-    length of the IV in bytes 
+  length of the IV in bytes 
 
 *Description*
 
@@ -1673,11 +1677,11 @@ void crypto_blkcipher_get_iv (struct crypto_blkcipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 dst::
-    buffer filled with the IV 
+  buffer filled with the IV 
 len::
-    length of the buffer dst 
+  length of the buffer dst 
 
 *Description*
 
@@ -1719,11 +1723,11 @@ struct crypto_cipher * crypto_alloc_cipher (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the single block cipher 
+  is the cra_name / name or cra_driver_name / driver name of the single block cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -1749,7 +1753,7 @@ void crypto_free_cipher (struct crypto_cipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -1769,11 +1773,11 @@ int crypto_has_cipher (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the single block cipher 
+  is the cra_name / name or cra_driver_name / driver name of the single block cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Return*
 
@@ -1795,7 +1799,7 @@ unsigned int crypto_cipher_blocksize (struct crypto_cipher * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -1823,17 +1827,18 @@ int crypto_cipher_setkey (struct crypto_cipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 key::
-    buffer holding the key 
+  buffer holding the key 
 keylen::
-    length of the key in bytes 
+  length of the key in bytes 
 
 *Description*
 
 The caller provided key is set for the single block cipher referenced by the cipher handle.
 
-Note, the key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
+[NOTE]
+The key length determines the cipher type. Many block ciphers implement different cipher modes depending on the key size, such as AES-128 vs AES-192 vs. AES-256. When providing a 16 byte key for an AES cipher handle, AES-128 is performed.
 
 *Return*
 
@@ -1857,11 +1862,11 @@ void crypto_cipher_encrypt_one (struct crypto_cipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 dst::
-    points to the buffer that will be filled with the ciphertext 
+  points to the buffer that will be filled with the ciphertext 
 src::
-    buffer holding the plaintext to be encrypted 
+  buffer holding the plaintext to be encrypted 
 
 *Description*
 
@@ -1885,11 +1890,11 @@ void crypto_cipher_decrypt_one (struct crypto_cipher * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 dst::
-    points to the buffer that will be filled with the plaintext 
+  points to the buffer that will be filled with the plaintext 
 src::
-    buffer holding the ciphertext to be decrypted 
+  buffer holding the ciphertext to be decrypted 
 
 *Description*
 
@@ -1930,11 +1935,11 @@ struct crypto_hash * crypto_alloc_hash (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
+  is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -1960,7 +1965,7 @@ void crypto_free_hash (struct crypto_hash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -1980,11 +1985,11 @@ int crypto_has_hash (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
+  is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Return*
 
@@ -2006,7 +2011,7 @@ unsigned int crypto_hash_blocksize (struct crypto_hash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -2032,7 +2037,7 @@ unsigned int crypto_hash_digestsize (struct crypto_hash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -2058,7 +2063,7 @@ int crypto_hash_init (struct hash_desc * desc);
 *Arguments*
 
 desc::
-    cipher request handle that to be filled by caller -- desc.tfm is filled with the hash cipher handle; desc.flags is filled with either CRYPTO_TFM_REQ_MAY_SLEEP or 0. 
+  cipher request handle that to be filled by caller -- desc.tfm is filled with the hash cipher handle; desc.flags is filled with either CRYPTO_TFM_REQ_MAY_SLEEP or 0. 
 
 *Description*
 
@@ -2086,11 +2091,11 @@ int crypto_hash_update (struct hash_desc * desc,
 *Arguments*
 
 desc::
-    cipher request handle 
+  cipher request handle 
 sg::
-    scatter / gather list pointing to the data to be added to the message digest 
+  scatter / gather list pointing to the data to be added to the message digest 
 nbytes::
-    number of bytes to be processed from sg 
+  number of bytes to be processed from sg 
 
 *Description*
 
@@ -2117,9 +2122,9 @@ int crypto_hash_final (struct hash_desc * desc,
 *Arguments*
 
 desc::
-    cipher request handle 
+  cipher request handle 
 out::
-    message digest output buffer -- The caller must ensure that the out buffer has a sufficient size (e.g. by using the crypto_hash_digestsize function). 
+  message digest output buffer -- The caller must ensure that the out buffer has a sufficient size (e.g. by using the crypto_hash_digestsize function). 
 
 *Description*
 
@@ -2148,13 +2153,13 @@ int crypto_hash_digest (struct hash_desc * desc,
 *Arguments*
 
 desc::
-    see crypto_hash_final 
+  see crypto_hash_final 
 sg::
-    see crypto_hash_update 
+  see crypto_hash_update 
 nbytes::
-    see crypto_hash_update 
+  see crypto_hash_update 
 out::
-    see crypto_hash_final 
+  see crypto_hash_final 
 
 *Description*
 
@@ -2182,11 +2187,11 @@ int crypto_hash_setkey (struct crypto_hash * hash,
 *Arguments*
 
 hash::
-    cipher handle 
+  cipher handle 
 key::
-    buffer holding the key 
+  buffer holding the key 
 keylen::
-    length of the key in bytes 
+  length of the key in bytes 
 
 *Description*
 
@@ -2226,11 +2231,11 @@ struct hash_alg_common {
 Members
 
 digestsize::
-    Size of the result of the transformation. A buffer of this size must be available to the final and finup calls, so they can store the resulting hash into it. For various predefined sizes, search include/crypto/ using git grep _DIGEST_SIZE include/crypto. 
+  Size of the result of the transformation. A buffer of this size must be available to the final and finup calls, so they can store the resulting hash into it. For various predefined sizes, search include/crypto/ using git grep _DIGEST_SIZE include/crypto. 
 statesize::
-    Size of the block for partial state of the transformation. A buffer of this size must be passed to the export function as it will save the partial state of the transformation into it. On the other side, the import function will load the state from a buffer of this size as well. 
+  Size of the block for partial state of the transformation. A buffer of this size must be passed to the export function as it will save the partial state of the transformation into it. On the other side, the import function will load the state from a buffer of this size as well. 
 base::
-    Start of data structure of cipher algorithm. The common data structure of crypto_alg contains information common to all ciphers. The hash_alg_common data structure now adds the hash-specific information. 
+  Start of data structure of cipher algorithm. The common data structure of crypto_alg contains information common to all ciphers. The hash_alg_common data structure now adds the hash-specific information. 
 
 <<<
 
@@ -2258,23 +2263,23 @@ struct ahash_alg {
 Members
 
 init::
-    Initialize the transformation context. Intended only to initialize the state of the HASH transformation at the begining. This shall fill in the internal structures used during the entire duration of the whole transformation. No data processing happens at this point. 
+  Initialize the transformation context. Intended only to initialize the state of the HASH transformation at the begining. This shall fill in the internal structures used during the entire duration of the whole transformation. No data processing happens at this point. 
 update::
-    Push a chunk of data into the driver for transformation. This function actually pushes blocks of data from upper layers into the driver, which then passes those to the hardware as seen fit. This function must not finalize the HASH transformation by calculating the final message digest as this only adds more data into the transformation. This function shall not modify the transformation context, as this function may be called in parallel with the same transformation object. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
+  Push a chunk of data into the driver for transformation. This function actually pushes blocks of data from upper layers into the driver, which then passes those to the hardware as seen fit. This function must not finalize the HASH transformation by calculating the final message digest as this only adds more data into the transformation. This function shall not modify the transformation context, as this function may be called in parallel with the same transformation object. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
 final::
-    Retrieve result from the driver. This function finalizes the transformation and retrieves the resulting hash from the driver and pushes it back to upper layers. No data processing happens at this point. 
+  Retrieve result from the driver. This function finalizes the transformation and retrieves the resulting hash from the driver and pushes it back to upper layers. No data processing happens at this point. 
 finup::
-    Combination of update and final. This function is effectively a combination of update and final calls issued in sequence. As some hardware cannot do update and final separately, this callback was added to allow such hardware to be used at least by IPsec. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
+  Combination of update and final. This function is effectively a combination of update and final calls issued in sequence. As some hardware cannot do update and final separately, this callback was added to allow such hardware to be used at least by IPsec. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
 digest::
-    Combination of init and update and final. This function effectively behaves as the entire chain of operations, init, update and final issued in sequence. Just like finup, this was added for hardware which cannot do even the finup, but can only do the whole transformation in one run. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
+  Combination of init and update and final. This function effectively behaves as the entire chain of operations, init, update and final issued in sequence. Just like finup, this was added for hardware which cannot do even the finup, but can only do the whole transformation in one run. Data processing can happen synchronously [SHASH] or asynchronously [AHASH] at this point. 
 export::
-    Export partial state of the transformation. This function dumps the entire state of the ongoing transformation into a provided block of data so it can be import 'ed back later on. This is useful in case you want to save partial result of the transformation after processing certain amount of data and reload this partial result multiple times later on for multiple re-use. No data processing happens at this point. 
+  Export partial state of the transformation. This function dumps the entire state of the ongoing transformation into a provided block of data so it can be import 'ed back later on. This is useful in case you want to save partial result of the transformation after processing certain amount of data and reload this partial result multiple times later on for multiple re-use. No data processing happens at this point. 
 import::
-    Import partial state of the transformation. This function loads the entire state of the ongoing transformation from a provided block of data so the transformation can continue from this point onward. No data processing happens at this point. 
+  Import partial state of the transformation. This function loads the entire state of the ongoing transformation from a provided block of data so the transformation can continue from this point onward. No data processing happens at this point. 
 setkey::
-    Set optional key used by the hashing algorithm. Intended to push optional key used by the hashing algorithm from upper layers into the driver. This function can store the key in the transformation context or can outright program it into the hardware. In the former case, one must be careful to program the key into the hardware at appropriate time and one must be careful that .setkey can be called multiple times during the existence of the transformation object. Not all hashing algorithms do implement this function as it is only needed for keyed message digests. SHAx/MDx/CRCx do NOT implement this function. HMAC(MDx)/HMAC(SHAx)/CMAC(AES) do implement this function. This function must be called before any other of the init, update, final, finup, digest is called. No data processing happens at this point. 
+  Set optional key used by the hashing algorithm. Intended to push optional key used by the hashing algorithm from upper layers into the driver. This function can store the key in the transformation context or can outright program it into the hardware. In the former case, one must be careful to program the key into the hardware at appropriate time and one must be careful that .setkey can be called multiple times during the existence of the transformation object. Not all hashing algorithms do implement this function as it is only needed for keyed message digests. SHAx/MDx/CRCx do NOT implement this function. HMAC(MDx)/HMAC(SHAx)/CMAC(AES) do implement this function. This function must be called before any other of the init, update, final, finup, digest is called. No data processing happens at this point. 
 halg::
-    see struct hash_alg_common 
+  see struct hash_alg_common 
 
 <<<
 
@@ -2304,27 +2309,27 @@ struct shash_alg {
 Members
 
 init::
-    see struct ahash_alg 
+  see struct ahash_alg 
 update::
-    see struct ahash_alg 
+  see struct ahash_alg 
 final::
-    see struct ahash_alg 
+  see struct ahash_alg 
 finup::
-    see struct ahash_alg 
+  see struct ahash_alg 
 digest::
-    see struct ahash_alg 
+  see struct ahash_alg 
 export::
-    see struct ahash_alg 
+  see struct ahash_alg 
 import::
-    see struct ahash_alg 
+  see struct ahash_alg 
 setkey::
-    see struct ahash_alg 
+  see struct ahash_alg 
 descsize::
-    Size of the operational state for the message digest. This state size is the memory size that needs to be allocated for shash_desc.__ctx 
+  Size of the operational state for the message digest. This state size is the memory size that needs to be allocated for shash_desc.__ctx 
 statesize::
-    see struct ahash_alg 
+  see struct ahash_alg 
 base::
-    internally used 
+  internally used 
 
 <<<
 
@@ -2363,11 +2368,11 @@ struct crypto_ahash * crypto_alloc_ahash (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the ahash cipher 
+  is the cra_name / name or cra_driver_name / driver name of the ahash cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -2393,7 +2398,7 @@ void crypto_free_ahash (struct crypto_ahash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -2411,7 +2416,7 @@ int crypto_ahash_init (struct ahash_request * req);
 *Arguments*
 
 req::
-    ahash_request handle that already is initialized with all necessary data using the ahash_request_* API functions 
+  ahash_request handle that already is initialized with all necessary data using the ahash_request_* API functions 
 
 *Description*
 
@@ -2437,7 +2442,7 @@ unsigned int crypto_ahash_digestsize (struct crypto_ahash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -2462,7 +2467,7 @@ struct crypto_ahash * crypto_ahash_reqtfm (struct ahash_request * req);
 *Arguments*
 
 req::
-    asynchronous request handle that contains the reference to the ahash cipher handle 
+  asynchronous request handle that contains the reference to the ahash cipher handle 
 
 *Description*
 
@@ -2488,7 +2493,7 @@ unsigned int crypto_ahash_reqsize (struct crypto_ahash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -2516,11 +2521,11 @@ int crypto_ahash_setkey (struct crypto_ahash * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 key::
-    buffer holding the key 
+  buffer holding the key 
 keylen::
-    length of the key in bytes 
+  length of the key in bytes 
 
 *Description*
 
@@ -2546,7 +2551,7 @@ int crypto_ahash_finup (struct ahash_request * req);
 *Arguments*
 
 req::
-    reference to the ahash_request handle that holds all information needed to perform the cipher operation 
+  reference to the ahash_request handle that holds all information needed to perform the cipher operation 
 
 *Description*
 
@@ -2572,7 +2577,7 @@ int crypto_ahash_final (struct ahash_request * req);
 *Arguments*
 
 req::
-    reference to the ahash_request handle that holds all information needed to perform the cipher operation 
+  reference to the ahash_request handle that holds all information needed to perform the cipher operation 
 
 *Description*
 
@@ -2598,7 +2603,7 @@ int crypto_ahash_digest (struct ahash_request * req);
 *Arguments*
 
 req::
-    reference to the ahash_request handle that holds all information needed to perform the cipher operation 
+  reference to the ahash_request handle that holds all information needed to perform the cipher operation 
 
 *Description*
 
@@ -2625,9 +2630,9 @@ int crypto_ahash_export (struct ahash_request * req,
 *Arguments*
 
 req::
-    reference to the ahash_request handle whose state is exported 
+  reference to the ahash_request handle whose state is exported 
 out::
-    output buffer of sufficient size that can hold the hash state 
+  output buffer of sufficient size that can hold the hash state 
 
 *Description*
 
@@ -2654,9 +2659,9 @@ int crypto_ahash_import (struct ahash_request * req,
 *Arguments*
 
 req::
-    reference to ahash_request handle the state is imported into 
+  reference to ahash_request handle the state is imported into 
 in::
-    buffer holding the state 
+  buffer holding the state 
 
 *Description*
 
@@ -2695,9 +2700,9 @@ void ahash_request_set_tfm (struct ahash_request * req,
 *Arguments*
 
 req::
-    request handle to be modified 
+  request handle to be modified 
 tfm::
-    cipher handle that shall be added to the request handle 
+  cipher handle that shall be added to the request handle 
 
 *Description*
 
@@ -2720,9 +2725,9 @@ struct ahash_request * ahash_request_alloc (struct crypto_ahash * tfm,
 *Arguments*
 
 tfm::
-    cipher handle to be registered with the request 
+  cipher handle to be registered with the request 
 gfp::
-    memory allocation flag that is handed to kmalloc by the API call. 
+  memory allocation flag that is handed to kmalloc by the API call. 
 
 *Description*
 
@@ -2748,7 +2753,7 @@ void ahash_request_free (struct ahash_request * req);
 *Arguments*
 
 req::
-    request data structure cipher handle to be freed 
+  request data structure cipher handle to be freed 
 
 <<<
 
@@ -2769,13 +2774,13 @@ void ahash_request_set_callback (struct ahash_request * req,
 *Arguments*
 
 req::
-    request handle 
+  request handle 
 flags::
-    specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
+  specify zero or an ORing of the flags CRYPTO_TFM_REQ_MAY_BACKLOG the request queue may back log and increase the wait queue beyond the initial maximum size; CRYPTO_TFM_REQ_MAY_SLEEP the request processing may sleep 
 compl::
-    callback function pointer to be registered with the request handle 
+  callback function pointer to be registered with the request handle 
 data::
-    The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
+  The data pointer refers to memory that is not used by the kernel crypto API, but provided to the callback function for it to use. Here, the caller can provide a reference to memory the callback function can operate on. As the callback function is invoked asynchronously to the related functionality, it may need to access data structures of the related functionality which can be referenced using this pointer. The callback function can access the memory via the “data” field in the crypto_async_request data structure provided to the callback function. 
 
 *Description*
 
@@ -2807,13 +2812,13 @@ void ahash_request_set_crypt (struct ahash_request * req,
 *Arguments*
 
 req::
-    ahash_request handle to be updated 
+  ahash_request handle to be updated 
 src::
-    source scatter/gather list 
+  source scatter/gather list 
 result::
-    buffer that is filled with the message digest -- the caller must ensure that the buffer has sufficient space by, for example, calling crypto_ahash_digestsize 
+  buffer that is filled with the message digest -- the caller must ensure that the buffer has sufficient space by, for example, calling crypto_ahash_digestsize 
 nbytes::
-    number of bytes to process from the source scatter/gather list 
+  number of bytes to process from the source scatter/gather list 
 
 *Description*
 
@@ -2891,7 +2896,7 @@ void crypto_free_shash (struct crypto_shash * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -3024,13 +3029,13 @@ int crypto_shash_digest (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    see crypto_shash_final 
+  see crypto_shash_final 
 data::
-    see crypto_shash_update 
+  see crypto_shash_update 
 len::
-    see crypto_shash_update 
+  see crypto_shash_update 
 out::
-    see crypto_shash_final 
+  see crypto_shash_final 
 
 *Description*
 
@@ -3057,9 +3062,9 @@ int crypto_shash_export (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    reference to the operational state handle whose state is exported 
+  reference to the operational state handle whose state is exported 
 out::
-    output buffer of sufficient size that can hold the hash state 
+  output buffer of sufficient size that can hold the hash state 
 
 *Description*
 
@@ -3086,9 +3091,9 @@ int crypto_shash_import (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    reference to the operational state handle the state imported into 
+  reference to the operational state handle the state imported into 
 in::
-    buffer holding the state 
+  buffer holding the state 
 
 *Description*
 
@@ -3114,7 +3119,7 @@ int crypto_shash_init (struct shash_desc * desc);
 *Arguments*
 
 desc::
-    operational state handle that is already filled 
+  operational state handle that is already filled 
 
 *Description*
 
@@ -3142,11 +3147,11 @@ int crypto_shash_update (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    operational state handle that is already initialized 
+  operational state handle that is already initialized 
 data::
-    input data to be added to the message digest 
+  input data to be added to the message digest 
 len::
-    length of the input data 
+  length of the input data 
 
 *Description*
 
@@ -3173,9 +3178,9 @@ int crypto_shash_final (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    operational state handle that is already filled with data 
+  operational state handle that is already filled with data 
 out::
-    output buffer filled with the message digest 
+  output buffer filled with the message digest 
 
 *Description*
 
@@ -3204,13 +3209,13 @@ int crypto_shash_finup (struct shash_desc * desc,
 *Arguments*
 
 desc::
-    see crypto_shash_final 
+  see crypto_shash_final 
 data::
-    see crypto_shash_update 
+  see crypto_shash_update 
 len::
-    see crypto_shash_update 
+  see crypto_shash_update 
 out::
-    see crypto_shash_final 
+  see crypto_shash_final 
 
 *Description*
 
@@ -3251,11 +3256,11 @@ struct crypto_rng * crypto_alloc_rng (const char * alg_name,
 *Arguments*
 
 alg_name::
-    is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
+  is the cra_name / name or cra_driver_name / driver name of the message digest cipher 
 type::
-    specifies the type of the cipher 
+  specifies the type of the cipher 
 mask::
-    specifies the mask for the cipher 
+  specifies the mask for the cipher 
 
 *Description*
 
@@ -3283,7 +3288,7 @@ struct rng_alg * crypto_rng_alg (struct crypto_rng * tfm);
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 
@@ -3309,7 +3314,7 @@ void crypto_free_rng (struct crypto_rng * tfm);
 *Arguments*
 
 tfm::
-    cipher handle to be freed 
+  cipher handle to be freed 
 
 <<<
 
@@ -3329,11 +3334,11 @@ int crypto_rng_get_bytes (struct crypto_rng * tfm,
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 rdata::
-    output buffer holding the random numbers 
+  output buffer holding the random numbers 
 dlen::
-    length of the output buffer 
+  length of the output buffer 
 
 *Description*
 
@@ -3356,15 +3361,15 @@ int crypto_rng_reset (struct crypto_rng * tfm,
  	u8 * seed,
  	unsigned int slen);
 ------------
- 
+
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 seed::
-    seed input data 
+  seed input data 
 slen::
-    length of the seed input data 
+  length of the seed input data 
 
 *Description*
 
@@ -3386,11 +3391,11 @@ crypto_rng_seedsize — obtain seed size of RNG
 ------------
 int crypto_rng_seedsize (struct crypto_rng * tfm);
 ------------
- 
+
 *Arguments*
 
 tfm::
-    cipher handle 
+  cipher handle 
 
 *Description*
 

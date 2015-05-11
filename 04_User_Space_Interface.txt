@@ -50,7 +50,7 @@ If a consumer on the other hand wants to maintain the plaintext and the cipherte
 
 === Message Digest API
 
- The message digest type to be used for the cipher operation is selected when invoking the bind syscall. bind requires the caller to provide a filled struct sockaddr data structure. This data structure must be filled as follows:
+The message digest type to be used for the cipher operation is selected when invoking the bind syscall. bind requires the caller to provide a filled struct sockaddr data structure. This data structure must be filled as follows:
 
 [source,c]
 -------------
@@ -83,7 +83,6 @@ struct sockaddr_alg sa = {
 	.salg_name = "cbc(aes)" /* this is the cipher name */
 };
 -------------
-    
 
 Before data can be sent to the kernel using the write/send system call family, the consumer must set the key. The key setting is described with the setsockopt invocation below.
 
@@ -117,7 +116,7 @@ struct sockaddr_alg sa = {
 	.salg_name = "gcm(aes)" /* this is the cipher name */
 };
 ---------------
-    
+  
 Before data can be sent to the kernel using the write/send system call family, the consumer must set the key. The key setting is described with the setsockopt invocation below.
 
 In addition, before data can be sent to the kernel using the write/send system call family, the consumer must set the authentication tag size. To set the authentication tag size, the caller must use the setsockopt invocation described below.
@@ -165,7 +164,7 @@ The output buffer the user space caller provides must be at least as large to ho
 
 === Random Number Generator API
 
- Again, the operation is very similar to the other APIs. During initialization, the struct sockaddr data structure must be filled as follows:
+Again, the operation is very similar to the other APIs. During initialization, the struct sockaddr data structure must be filled as follows:
 
 [source,c]
 -----------------
